@@ -135,7 +135,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
- n
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Register new user with Firebase
+        // Register new user with Firebase service
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
