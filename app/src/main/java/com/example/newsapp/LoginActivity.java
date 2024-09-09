@@ -1,87 +1,3 @@
-//package com.example.newsapp;
-//
-//import android.os.Bundle;
-//import android.text.TextUtils;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.EditText;
-//import android.widget.Toast;
-//
-//import androidx.activity.EdgeToEdge;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.graphics.Insets;
-//import androidx.core.view.ViewCompat;
-//import androidx.core.view.WindowInsetsCompat;
-//
-//import com.google.firebase.auth.FirebaseAuth;
-//
-//public class LoginActivity extends AppCompatActivity {
-//
-//    private FirebaseAuth mAuth;
-//    private EditText emailEditText, passwordEditText;
-//    private Button loginButton;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_login2);  // This links to the activity_login2.xml layout
-//
-//        // Keep the existing system insets code for padding
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
-//
-//        // Initialize Firebase Auth
-//        mAuth = FirebaseAuth.getInstance();
-//
-//        // Find views by ID
-//        emailEditText = findViewById(R.id.email);  // Ensure these IDs match your activity_login.xml fields
-//        passwordEditText = findViewById(R.id.password);
-//        loginButton = findViewById(R.id.loginButton);
-//
-//        // Set onClickListener for the login button
-//        loginButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loginUser();
-//            }
-//        });
-//    }
-//
-//    private void loginUser() {
-//        String email = emailEditText.getText().toString().trim();
-//        String password = passwordEditText.getText().toString().trim();
-//
-//        // Validate inputs
-//        if (TextUtils.isEmpty(email)) {
-//            emailEditText.setError("Email is required");
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(password)) {
-//            passwordEditText.setError("Password is required");
-//            return;
-//        }
-//
-//        // Authenticate with Firebase
-//        mAuth.signInWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-//                        // You can redirect to another activity or show success here
-//                    } else {
-//                        String errorMessage = task.getException().getMessage();
-//                        Toast.makeText(LoginActivity.this, "Login failed: " + errorMessage, Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//
-//
-//    }
-//}
-
 package com.example.newsapp;
 
 import android.os.Bundle;
@@ -147,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        // Validate inputs
+        // Check inputs
         if (TextUtils.isEmpty(email)) {
             emailEditText.setError("Email is required");
             return;
@@ -158,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Authenticate with Firebase
+        // Firebase main authenticaiton
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -190,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Register new user with Firebase service
+        // new user regristration.
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
