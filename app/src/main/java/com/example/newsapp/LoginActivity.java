@@ -1,5 +1,6 @@
 package com.example.newsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -79,6 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
                     } else {
                         String errorMessage = task.getException().getMessage();
                         Toast.makeText(LoginActivity.this, "Login failed: " + errorMessage, Toast.LENGTH_LONG).show();
@@ -111,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Sign Up successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
                     } else {
                         String errorMessage = task.getException().getMessage();
                         Toast.makeText(LoginActivity.this, "Sign Up failed: " + errorMessage, Toast.LENGTH_LONG).show();
