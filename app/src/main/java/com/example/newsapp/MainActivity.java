@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private NewsAdapter adapter;
     private DatabaseReference databaseReference;
+    private TextView titleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        String country = this.getResources().getConfiguration().getLocales().get(0).getCountry().toLowerCase();
+        Locale locale = this.getResources().getConfiguration().getLocales().get(0);
+
+        String country = locale.getCountry().toLowerCase();
+        String countryName = locale.getDisplayCountry();
+
+        titleTextView = findViewById(R.id.titleTextView);
+        titleTextView.setText("Latest News for " + countryName);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
